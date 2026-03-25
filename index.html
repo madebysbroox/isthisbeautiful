@@ -9,13 +9,13 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Favicon (simple inline SVG) -->
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪑</text></svg>">
 </head>
 <body>
@@ -23,13 +23,16 @@
   <!-- ======== NAVIGATION ======== -->
   <nav class="nav">
     <div class="container">
-      <a href="#hero" class="nav__logo">Piece <span>by</span> Piece</a>
+      <a href="#hero" class="nav__logo">
+        <span class="nav__logo-mark">P</span>
+        <span class="nav__logo-text">Piece by Piece</span>
+      </a>
       <ul class="nav__links">
         <li><a href="#hero">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#shop">Shop</a></li>
         <li><a href="#past-work">Past Work</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="btn btn--glass btn--nav">Get in Touch</a></li>
       </ul>
       <button class="nav__toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -39,33 +42,51 @@
 
   <!-- ======== HERO ======== -->
   <section class="hero" id="hero">
+    <div class="hero__bg"></div>
     <div class="hero__content">
       <p class="hero__tagline">Est. 2019 &middot; Family Owned</p>
-      <h1>Piece by Piece</h1>
-      <p class="hero__sub">Every piece has a past. We give it a future.</p>
-      <a href="#shop" class="btn btn--primary">Browse the Collection</a>
+      <h1>Every piece<br>has a <em>past.</em></h1>
+      <p class="hero__sub">We give it a future.</p>
+      <div class="hero__actions">
+        <a href="#shop" class="btn btn--glass btn--lg">Browse Collection</a>
+        <a href="#about" class="btn btn--ghost btn--lg">Our Story</a>
+      </div>
+    </div>
+    <div class="hero__scroll-hint">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
     </div>
   </section>
 
   <!-- ======== ABOUT ======== -->
-  <section class="section section--alt" id="about">
-    <div class="container golden-grid">
-      <div class="about__text">
-        <p class="section-label">Our Story</p>
-        <h2>Hands that remember.</h2>
-        <p>We started in a two-car garage with a belt sander and a stubborn belief that good bones deserve better skin. Three generations of our family have worked wood — grandpa built barns, dad built cabinets, and we build second chances for furniture the world gave up on.</p>
-        <p>Every piece that passes through our shop gets stripped, studied, and brought back with intention. We don't flip furniture. We listen to it. The grain tells us what finish it wants. The joints tell us where it hurts. We just do the work.</p>
-        <p>Based out of the Carolina piedmont. Shipping anywhere that'll have us.</p>
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about__layout">
+        <div class="about__visual">
+          <div class="about__image" role="img" aria-label="Workshop detail"></div>
+          <div class="about__image-accent"></div>
+        </div>
+        <div class="about__text">
+          <p class="section-label">Our Story</p>
+          <h2>Hands that<br>remember.</h2>
+          <p>We started in a two-car garage with a belt sander and a stubborn belief that good bones deserve better skin. Three generations of our family have worked wood — grandpa built barns, dad built cabinets, and we build second chances for furniture the world gave up on.</p>
+          <p>Every piece that passes through our shop gets stripped, studied, and brought back with intention. We don't flip furniture. We listen to it. The grain tells us what finish it wants. The joints tell us where it hurts. We just do the work.</p>
+          <p class="about__location">Based out of the Carolina piedmont.<br>Shipping anywhere that'll have us.</p>
+        </div>
       </div>
-      <div class="about__image" role="img" aria-label="Workshop detail — sanded wood surface"></div>
     </div>
   </section>
 
   <!-- ======== SHOP ======== -->
-  <section class="section" id="shop">
+  <section class="section section--dark" id="shop">
     <div class="container">
-      <p class="section-label">Current Collection</p>
-      <h2>Pieces looking for a home.</h2>
+      <div class="section__header">
+        <div>
+          <p class="section-label">Current Collection</p>
+          <h2>Pieces looking<br>for a home.</h2>
+        </div>
+        <p class="section__header-sub">Each item is one-of-one. When it's gone, it's gone.</p>
+      </div>
       <div class="shop__grid">
         <div class="loading">Loading pieces</div>
       </div>
@@ -73,10 +94,10 @@
   </section>
 
   <!-- ======== PAST WORK / TESTIMONIALS ======== -->
-  <section class="section section--alt" id="past-work">
+  <section class="section" id="past-work">
     <div class="container">
-      <p class="section-label">Past Work</p>
-      <h2>What they said after.</h2>
+      <p class="section-label section-label--center">Past Work</p>
+      <h2 class="text-center">What they said after.</h2>
       <div class="testimonials__grid">
         <div class="loading">Loading stories</div>
       </div>
@@ -84,13 +105,26 @@
   </section>
 
   <!-- ======== CONTACT ======== -->
-  <section class="section" id="contact">
+  <section class="section section--dark" id="contact">
     <div class="container">
-      <div class="contact__wrapper">
-        <p class="section-label">Get in Touch</p>
-        <h2>Say hello. Ask questions. Claim a piece.</h2>
-        <form id="contact-form" class="contact__form">
-          <div class="form-row">
+      <div class="contact__layout">
+        <div class="contact__info">
+          <p class="section-label">Get in Touch</p>
+          <h2>Say hello.<br>Ask questions.<br>Claim a piece.</h2>
+          <p>We respond within 24 hours. Usually faster when we're not elbow-deep in sawdust.</p>
+          <div class="contact__details">
+            <div class="contact__detail">
+              <span class="contact__detail-label">Email</span>
+              <span>hello@piecebypiece.co</span>
+            </div>
+            <div class="contact__detail">
+              <span class="contact__detail-label">Location</span>
+              <span>Carolina Piedmont</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact__form-wrap">
+          <form id="contact-form" class="contact__form">
             <div class="form-group">
               <label for="contact-name">Name</label>
               <input type="text" id="contact-name" name="name" placeholder="Your name" required>
@@ -99,14 +133,14 @@
               <label for="contact-email">Email</label>
               <input type="email" id="contact-email" name="email" placeholder="you@example.com" required>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="contact-message">Message</label>
-            <textarea id="contact-message" name="message" placeholder="Tell us what you're looking for..." required></textarea>
-          </div>
-          <div id="form-message" class="form-message"></div>
-          <button type="submit" class="btn btn--primary">Send Message</button>
-        </form>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" placeholder="Tell us what you're looking for..." required></textarea>
+            </div>
+            <div id="form-message" class="form-message"></div>
+            <button type="submit" class="btn btn--glass btn--full">Send Message</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -114,9 +148,11 @@
   <!-- ======== FOOTER ======== -->
   <footer class="footer">
     <div class="container">
-      <p class="footer__brand">Piece by Piece</p>
-      <p>&copy; 2019&ndash;2026 Piece by Piece Furniture Co. All rights reserved.</p>
-      <p style="margin-top: 0.5rem; opacity: 0.6;">Made with care, sand, and polyurethane.</p>
+      <div class="footer__inner">
+        <p class="footer__brand">Piece by Piece</p>
+        <p>&copy; 2019&ndash;2026 Piece by Piece Furniture Co.</p>
+        <p class="footer__tagline">Made with care, sand, and polyurethane.</p>
+      </div>
     </div>
   </footer>
 

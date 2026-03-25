@@ -1,25 +1,25 @@
 /* ============================================
-   Heirloom & Co. — App
+   Piece by Piece — App
    ============================================ */
 
 (() => {
   'use strict';
 
   // ---- Config ----
-  const API_BASE = ''; // same-origin; override for local dev
+  const API_BASE = '';
 
-  // ---- Wood-tone gradient generator ----
-  const woodTones = [
-    ['#8B7355', '#A0926B', '#6B5B4E', '#9C8B6E'],
-    ['#7A6B55', '#B5A68E', '#5C4E3C', '#8B7D65'],
-    ['#9C8B6E', '#C4B69E', '#6B5B4E', '#A89880'],
-    ['#6B5B4E', '#8B7B6E', '#4E3E30', '#7A6A5C'],
-    ['#A0926B', '#BEB09A', '#7A6B55', '#C5B595'],
-    ['#5C4033', '#7A5F4E', '#3E2A1E', '#6B5040'],
+  // ---- Dark-tone gradient generator for product images ----
+  const tones = [
+    ['#1a1a2e', '#16213e', '#0f3460', '#1a1a2e'],
+    ['#0f0f1a', '#1b2838', '#2a3f5f', '#141425'],
+    ['#1c1c2e', '#2a2a4a', '#1a1a3a', '#252545'],
+    ['#111827', '#1e293b', '#0f172a', '#1e3a5f'],
+    ['#0d1117', '#161b22', '#21262d', '#0d1117'],
+    ['#1a1b26', '#24283b', '#1a1b26', '#414868'],
   ];
 
   function productGradient(index) {
-    const t = woodTones[index % woodTones.length];
+    const t = tones[index % tones.length];
     return `linear-gradient(135deg, ${t[0]} 0%, ${t[1]} 33%, ${t[2]} 66%, ${t[3]} 100%)`;
   }
 
@@ -68,13 +68,12 @@
           <p class="product-card__desc">${escapeHtml(p.description)}</p>
           <div class="product-card__footer">
             <span class="product-card__price">$${(p.price_cents / 100).toLocaleString()}</span>
-            <button class="btn btn--outline btn--small" data-inquire="${escapeHtml(p.name)}">Inquire</button>
+            <button class="btn btn--glass btn--sm" data-inquire="${escapeHtml(p.name)}">Inquire</button>
           </div>
         </div>
       </article>
     `).join('');
 
-    // Inquire buttons → scroll to contact with piece name
     grid.querySelectorAll('[data-inquire]').forEach(btn => {
       btn.addEventListener('click', () => {
         const name = btn.dataset.inquire;
@@ -101,7 +100,7 @@
     `).join('');
   }
 
-  // ---- Fallback: static data when API is unavailable ----
+  // ---- Fallback data ----
   const fallbackProducts = [
     { name: 'Restored Oak Dresser', slug: 'restored-oak-dresser', description: 'Six drawers. Dovetail joints. Sanded to satin.', price_cents: 89500, category: 'Bedroom', sold: 0 },
     { name: 'Mid-Century Walnut Nightstand', slug: 'walnut-nightstand', description: 'Tapered legs. Brass pulls. One careful owner before us.', price_cents: 34500, category: 'Bedroom', sold: 0 },
@@ -118,11 +117,20 @@
     { customer: 'The Reeves Family', location: 'Charleston, SC', quote: 'Our daughter spilled grape juice on it the first week. Wiped right off. That finish is no joke.', piece_name: 'Mid-Century Walnut Nightstand', rating: 4 },
   ];
 
-  // ---- Navigation: intersection observer ----
+  // ---- Navigation ----
   function initNav() {
+    const nav = document.querySelector('.nav');
     const sections = document.querySelectorAll('.section[id], .hero[id]');
-    const navLinks = document.querySelectorAll('.nav__links a');
+    const navLinks = document.querySelectorAll('.nav__links a:not(.btn)');
 
+    // Scroll-based nav background
+    const handleScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    // Active section tracking
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -200,7 +208,6 @@
     initNav();
     initContactForm();
 
-    // Load products
     try {
       const products = await api.getProducts();
       renderProducts(products);
@@ -208,7 +215,6 @@
       renderProducts(fallbackProducts);
     }
 
-    // Load testimonials
     try {
       const testimonials = await api.getTestimonials();
       renderTestimonials(testimonials);
