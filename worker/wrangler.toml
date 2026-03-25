@@ -5,4 +5,12 @@ compatibility_date = "2024-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "piece-by-piece-db"
-database_id = "<your-database-id>"  # Replace after running: wrangler d1 create piece-by-piece-db
+database_id = {
+  "d1_databases": [
+    {
+      "binding": "piece_by_piece_db",
+      "database_name": "piece-by-piece-db",
+      "database_id": "f1f0f9fe-dd26-4d61-9106-13d880430385"
+    }
+  ]
+}
