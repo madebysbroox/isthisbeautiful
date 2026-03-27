@@ -6,7 +6,7 @@
   'use strict';
 
   // ---- Config ----
-  const API_BASE = '';
+  const API_BASE = 'https://piece-by-piece-api.sbrooks-572.workers.dev';
 
   // ---- Dark-tone gradient generator for product images ----
   const tones = [
